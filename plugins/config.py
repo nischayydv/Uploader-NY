@@ -6,7 +6,7 @@ import os
 import re
 import logging
 
-# Regex for ID pattern check (optional, retained from original)
+# Regex for ID pattern check
 id_pattern = re.compile(r'^.\d+$')
 
 
@@ -29,10 +29,10 @@ logging.basicConfig(
 
 class Config(object):
     # ========== Basic Bot Info ==========
-    BOT_TOKEN = os.getenv("BOT_TOKEN", "8021806435:AAEHRMNJkB3Vm7uIa_2XLcY5ESIMDm17zWU")
-    BOT_USERNAME = os.getenv("BOT_USERNAME", "Url_Uploader_NY_Bot")
-    API_ID = int(os.getenv("API_ID", "24720215"))
-    API_HASH = os.getenv("API_HASH", "c0d3395590fecba19985f95d6300785e")
+    BOT_TOKEN = os.getenv("BOT_TOKEN", "YOUR_BOT_TOKEN_HERE")
+    BOT_USERNAME = os.getenv("BOT_USERNAME", "YOUR_BOT_USERNAME_HERE")
+    API_ID = int(os.getenv("API_ID", "12345678"))
+    API_HASH = os.getenv("API_HASH", "YOUR_API_HASH_HERE")
 
     # ========== Downloads ==========
     DOWNLOAD_LOCATION = os.getenv("DOWNLOAD_LOCATION", "./DOWNLOADS")
@@ -51,20 +51,17 @@ class Config(object):
     PROCESS_MAX_TIMEOUT = int(os.getenv("PROCESS_MAX_TIMEOUT", 3600))
 
     # ========== MongoDB ==========
-    DATABASE_URL = os.getenv(
-        "DATABASE_URL",
-        "mongodb+srv://Nischay999:Nischay999@cluster0.5kufo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-    )
+    DATABASE_URL = os.getenv("DATABASE_URL", "mongodb+srv://username:password@host/db")
 
     # ========== Session / Identity ==========
     SESSION_NAME = os.getenv("SESSION_NAME", "Url_Uploader_NY_Bot")
     SESSION_STR = os.getenv("SESSION_STR", "")
-    OWNER_ID = int(os.getenv("OWNER_ID", "7910994767"))
+    OWNER_ID = int(os.getenv("OWNER_ID", "123456789"))
 
     # ========== Channels ==========
-    LOG_CHANNEL = int(os.getenv("LOG_CHANNEL", "-1002732334186"))
-    UPDATES_CHANNEL = os.getenv("UPDATES_CHANNEL", "-1002465691872")
-    UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL", "-1002465691872")
+    LOG_CHANNEL = int(os.getenv("LOG_CHANNEL", "-1001234567890"))
+    UPDATES_CHANNEL = os.getenv("UPDATES_CHANNEL", "-1001234567890")
+    UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL", "-1001234567890")
 
     # ========== Shortlink ==========
     SHORT_DOMAIN = os.getenv("SHORT_DOMAIN", "")

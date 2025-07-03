@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: nischayydv/uploader-bot-NY:latest
+          tags: nischayydv/uploader-bot-ny:latest

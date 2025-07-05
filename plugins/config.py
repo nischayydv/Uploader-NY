@@ -4,85 +4,65 @@
 
 import os
 import re
-import logging
+from os import environ, getenv
 
-# Regex for ID pattern check
 id_pattern = re.compile(r'^.\d+$')
 
-
-def is_enabled(value, default=False):
-    if isinstance(value, str):
-        return value.lower() in ["true", "yes", "1", "enable", "y"]
-    return default
-
-
-# Logger setup
-logging.basicConfig(
-    format='%(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('log.txt'),
-        logging.StreamHandler()
-    ],
-    level=logging.INFO
-)
-
+def is_enabled(value, default):
+    if value.lower() in ["true", "yes", "1", "enable", "y"]:
+        return True
+    elif value.lower() in ["false", "no", "0", "disable", "n"]:
+        return False
+    else:
+        return default
 
 class Config(object):
-    # ========== Basic Bot Info ==========
-    BOT_TOKEN = os.getenv("BOT_TOKEN", "YOUR_BOT_TOKEN_HERE")
-    BOT_USERNAME = os.getenv("BOT_USERNAME", "YOUR_BOT_USERNAME_HERE")
-    API_ID = int(os.getenv("API_ID", "12345678"))
-    API_HASH = os.getenv("API_HASH", "YOUR_API_HASH_HERE")
+    # Bot Information 
+    TECH_VJ_BOT_TOKEN = "8021806435:AAFGhQDVA3OXJMmtM74qSSFSQyeeFNRiw2A"
+    TECH_VJ_BOT_USERNAME = "Url_Uploader_NY_Bot"  # Bot username without @.
 
-    # ========== Downloads ==========
-    DOWNLOAD_LOCATION = os.getenv("DOWNLOAD_LOCATION", "./DOWNLOADS")
-    MAX_FILE_SIZE = int(os.getenv("MAX_FILE_SIZE", 2194304000))
-    TG_MAX_FILE_SIZE = int(os.getenv("TG_MAX_FILE_SIZE", 2194304000))
-    FREE_USER_MAX_FILE_SIZE = int(os.getenv("FREE_USER_MAX_FILE_SIZE", 2194304000))
-    TG_MIN_FILE_SIZE = int(os.getenv("TG_MIN_FILE_SIZE", 2194304000))
-    CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 128))
+    # The Telegram API things
+    TECH_VJ_API_ID = 24720215
+    TECH_VJ_API_HASH = "c0d3395590fecba19985f95d6300785e"
 
-    # ========== Thumbnail and Proxy ==========
-    DEF_THUMB_NAIL_VID_S = os.getenv("DEF_THUMB_NAIL_VID_S", "https://placehold.it/90x90")
-    HTTP_PROXY = os.getenv("HTTP_PROXY", "")
+    # The download location, where the HTTP Server runs
+    TECH_VJ_DOWNLOAD_LOCATION = "./DOWNLOADS"
 
-    # ========== Limits and Timeout ==========
-    MAX_MESSAGE_LENGTH = 4096
-    PROCESS_MAX_TIMEOUT = int(os.getenv("PROCESS_MAX_TIMEOUT", 3600))
+    # Telegram maximum file upload size
+    TECH_VJ_MAX_FILE_SIZE = 2097152000
+    TECH_VJ_TG_MAX_FILE_SIZE = 2097152000
+    TECH_VJ_FREE_USER_MAX_FILE_SIZE = 2097152000
 
-    # ========== MongoDB ==========
-    DATABASE_URL = os.getenv("DATABASE_URL", "mongodb+srv://username:password@host/db")
+    # Chunk size that should be used with requests
+    TECH_VJ_CHUNK_SIZE = 128
 
-    # ========== Session / Identity ==========
-    SESSION_NAME = os.getenv("SESSION_NAME", "Url_Uploader_NY_Bot")
-    SESSION_STR = os.getenv("SESSION_STR", "")
-    OWNER_ID = int(os.getenv("OWNER_ID", "123456789"))
+    # Default thumbnail to be used in the videos
+    TECH_VJ_HTTP_PROXY = ""
 
-    # ========== Channels ==========
-    LOG_CHANNEL = int(os.getenv("LOG_CHANNEL", "-1001234567890"))
-    UPDATES_CHANNEL = os.getenv("UPDATES_CHANNEL", "-1001234567890")
-    UPDATE_CHANNEL = os.getenv("UPDATE_CHANNEL", "-1001234567890")
+    # Maximum message length in Telegram
+    TECH_VJ_MAX_MESSAGE_LENGTH = 4096
 
-    # ========== Shortlink ==========
-    SHORT_DOMAIN = os.getenv("SHORT_DOMAIN", "")
-    SHORT_API = os.getenv("SHORT_API", "")
-    SHORTLINK_ENABLED = is_enabled(os.getenv("SHORTLINK_ENABLED", "false"))
-    TUTORIAL_LINK = os.getenv("TUTORIAL_LINK", "https://t.me/How_To_Open_Linkl")
+    # Set timeout for subprocess
+    TECH_VJ_PROCESS_MAX_TIMEOUT = 0
 
-    # ========== Bot Behavior ==========
-    TRUE_OR_FALSE = is_enabled(os.getenv("TRUE_OR_FALSE", "false"))
-    ADL_BOT_RQ = {}
+    # Your telegram account ID
+    TECH_VJ_OWNER_ID = 7910994767
+    TECH_VJ_SESSION_NAME = "Url_Uploader_NY_Bot"
 
-    # ========== Watermark ==========
-    DEF_WATER_MARK_FILE = "@UploaderXNTBot"
+    # Database URI (mongodb)
+    TECH_VJ_DATABASE_URL = "mongodb+srv://Nischay999:Nischay999@cluster0.5kufo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    
+    TECH_VJ_MAX_RESULTS = "50"
 
-    # ========== Banned Users ==========
-    BANNED_USERS = set(
-        int(x) for x in os.getenv("BANNED_USERS", "").split() if x.strip().isdigit()
-    )
+    # Channel Information
+    TECH_VJ_LOG_CHANNEL = -1002732334186  # Your log channel ID and make bot admin in log channel with full rights
 
-    # ========== Other Optional ==========
-    MAX_RESULTS = os.getenv("MAX_RESULTS", "50")
+    # If you want force subscribe then give your channel ID below else leave blank
+    TECH_VJ_UPDATE_CHANNEL = -1002465691872  # Your update channel ID and make bot admin in update channel with full rights
+    TECH_VJ_UPDATES_CHANNEL = -1002465691872
 
-    # ========== Logging ==========
-    LOGGER = logging
+    # Url Shortener Information
+    TECH_VJ = False  # Set False if you want shortlink off else True
+    TECH_VJ_URL = ""  # Your shortlink URL domain or URL without https://
+    TECH_VJ_API = ""  # Your URL shortener API
+    TECH_VJ_TUTORIAL = "https://t.me/How_To_Open_Linkl"  # Tutorial link

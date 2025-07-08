@@ -15,7 +15,7 @@ tldextract
 ffmpeg-python
 aiofiles
 pyromod
-yt-dlp
+yt-dlp==2025.06.30
 pytube
 flask
 gunicorn==20.1.0
